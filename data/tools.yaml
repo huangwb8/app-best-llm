@@ -1,0 +1,660 @@
+# AI 工具数据库
+# 数据来源：SWE-bench、Chatbot Arena、Aider Leaderboard、社区反馈
+# 评分范围：1-10
+
+tools:
+
+  # ── 编程开发 ──────────────────────────────────────────────
+  - id: claude_code
+    name: Claude Code
+    category: coding
+    description: Anthropic 官方 CLI，深度集成 Claude 模型，支持多文件编辑、代码库理解和自主任务执行
+    scores:
+      overall: 9.2
+      ease_of_use: 7.5
+      quality: 9.5
+      value: 8.5
+    pricing:
+      free_tier: false
+      free_description: "无免费版，按 API token 计费"
+      paid_plans:
+        - name: Pro（含 Claude.ai）
+          price: 20
+          unit: 月
+        - name: API 按量
+          price: 3
+          unit: 百万 token（Sonnet）
+    use_cases: [代码生成, 代码重构, 调试, 多文件编辑, 自主任务执行]
+    pros: [代码质量最高, 上下文理解深, 支持自主执行, SWE-bench 领先]
+    cons: [需要 CLI 环境, 无 GUI, 按量计费成本不可控]
+    technical_level: advanced
+    benchmarks:
+      swe_bench: 72.5
+      humaneval: 92.0
+
+  - id: cursor
+    name: Cursor
+    category: coding
+    description: 基于 VS Code 的 AI 编辑器，内置多模型支持，Tab 补全和 Composer 多文件编辑
+    scores:
+      overall: 9.0
+      ease_of_use: 9.0
+      quality: 8.8
+      value: 8.5
+    pricing:
+      free_tier: true
+      free_description: "每月 2000 次补全 + 50 次慢速高级请求"
+      paid_plans:
+        - name: Pro
+          price: 20
+          unit: 月
+        - name: Business
+          price: 40
+          unit: 月/人
+    use_cases: [代码补全, 多文件编辑, 代码重构, 调试, 代码解释]
+    pros: [VS Code 生态兼容, 界面友好, Tab 补全流畅, 多模型切换]
+    cons: [订阅费用较高, 部分功能需联网, 隐私顾虑]
+    technical_level: beginner
+    benchmarks:
+      swe_bench: 65.0
+
+  - id: windsurf
+    name: Windsurf
+    category: coding
+    description: Codeium 出品的 AI 编辑器，Cascade 代理模式支持多步骤自主编码
+    scores:
+      overall: 8.5
+      ease_of_use: 8.8
+      quality: 8.5
+      value: 9.0
+    pricing:
+      free_tier: true
+      free_description: "免费版含基础 AI 功能，无限制补全"
+      paid_plans:
+        - name: Pro
+          price: 15
+          unit: 月
+    use_cases: [代码补全, 自主编码, 代码重构, 多文件编辑]
+    pros: [免费版功能强, 价格低, Cascade 代理模式, 速度快]
+    cons: [生态不如 Cursor, 社区较小]
+    technical_level: beginner
+
+  - id: github_copilot
+    name: GitHub Copilot
+    category: coding
+    description: GitHub 官方 AI 编程助手，深度集成 VS Code/JetBrains，企业级安全合规
+    scores:
+      overall: 8.3
+      ease_of_use: 9.2
+      quality: 8.0
+      value: 7.8
+    pricing:
+      free_tier: true
+      free_description: "学生/开源维护者免费，个人每月 2000 次补全"
+      paid_plans:
+        - name: Individual
+          price: 10
+          unit: 月
+        - name: Business
+          price: 19
+          unit: 月/人
+        - name: Enterprise
+          price: 39
+          unit: 月/人
+    use_cases: [代码补全, 代码解释, PR 审查, 测试生成]
+    pros: [GitHub 深度集成, 企业合规, 多 IDE 支持, 品牌信任]
+    cons: [代码质量不如 Claude Code, 上下文窗口有限]
+    technical_level: beginner
+
+  # ── 基础模型 ──────────────────────────────────────────────
+  - id: claude
+    name: Claude (claude.ai)
+    category: foundation
+    description: Anthropic 的旗舰对话模型，以长上下文、安全性和推理能力著称
+    scores:
+      overall: 9.3
+      ease_of_use: 9.0
+      quality: 9.5
+      value: 8.8
+    pricing:
+      free_tier: true
+      free_description: "免费版含 Claude Sonnet，有使用限制"
+      paid_plans:
+        - name: Pro
+          price: 20
+          unit: 月
+        - name: Team
+          price: 25
+          unit: 月/人
+    use_cases: [长文档分析, 代码辅助, 写作, 推理, 研究]
+    pros: [200K 上下文, 安全性高, 推理能力强, 中文优秀]
+    cons: [无联网搜索（免费版）, 图像生成不支持]
+    technical_level: beginner
+    benchmarks:
+      mmlu: 88.7
+      chatbot_arena: 1320
+
+  - id: gpt4o
+    name: GPT-4o / o3
+    category: foundation
+    description: OpenAI 旗舰模型，多模态能力强，o3 系列擅长复杂推理
+    scores:
+      overall: 9.1
+      ease_of_use: 9.2
+      quality: 9.2
+      value: 8.0
+    pricing:
+      free_tier: true
+      free_description: "ChatGPT 免费版含 GPT-4o mini，有限制"
+      paid_plans:
+        - name: Plus
+          price: 20
+          unit: 月
+        - name: Pro
+          price: 200
+          unit: 月
+    use_cases: [多模态理解, 代码生成, 写作, 数据分析, 推理]
+    pros: [多模态领先, 生态最大, 插件丰富, o3 推理强]
+    cons: [Pro 版价格高, 数据隐私顾虑, 速度有时慢]
+    technical_level: beginner
+    benchmarks:
+      mmlu: 88.7
+      chatbot_arena: 1310
+
+  - id: gemini
+    name: Gemini (Google)
+    category: foundation
+    description: Google DeepMind 的多模态模型，原生集成 Google 服务，长上下文领先
+    scores:
+      overall: 8.8
+      ease_of_use: 8.8
+      quality: 8.8
+      value: 9.0
+    pricing:
+      free_tier: true
+      free_description: "Gemini 1.5 Flash 免费，有速率限制"
+      paid_plans:
+        - name: Advanced（Google One）
+          price: 19.99
+          unit: 月
+    use_cases: [长文档处理, 多模态分析, Google 服务集成, 代码生成]
+    pros: [1M token 上下文, Google 生态集成, 免费版强, 多模态]
+    cons: [中文能力弱于 Claude, 部分地区受限]
+    technical_level: beginner
+    benchmarks:
+      mmlu: 90.0
+      chatbot_arena: 1300
+
+  - id: deepseek
+    name: DeepSeek
+    category: foundation
+    description: 国产开源模型，推理能力媲美 GPT-4，价格极低，中文能力强
+    scores:
+      overall: 8.7
+      ease_of_use: 8.0
+      quality: 8.8
+      value: 9.8
+    pricing:
+      free_tier: true
+      free_description: "DeepSeek Chat 网页版免费"
+      paid_plans:
+        - name: API（DeepSeek-V3）
+          price: 0.27
+          unit: 百万 token
+        - name: API（DeepSeek-R1）
+          price: 0.55
+          unit: 百万 token
+    use_cases: [代码生成, 数学推理, 中文写作, 低成本 API]
+    pros: [价格极低, 中文最强, 开源可本地部署, 推理能力强]
+    cons: [服务稳定性一般, 部分场景审查, 隐私顾虑]
+    technical_level: intermediate
+    benchmarks:
+      mmlu: 88.5
+      humaneval: 89.0
+
+  - id: llama
+    name: Llama (Meta)
+    category: foundation
+    description: Meta 开源大模型，可本地部署，无数据隐私顾虑，社区生态丰富
+    scores:
+      overall: 8.0
+      ease_of_use: 5.0
+      quality: 8.0
+      value: 9.5
+    pricing:
+      free_tier: true
+      free_description: "完全开源免费，本地部署无费用"
+      paid_plans:
+        - name: Groq API（快速推理）
+          price: 0.05
+          unit: 百万 token
+    use_cases: [本地部署, 隐私敏感场景, 定制微调, 研究]
+    pros: [完全免费, 数据不出本地, 可微调, 社区活跃]
+    cons: [需要硬件资源, 部署复杂, 能力弱于闭源模型]
+    technical_level: advanced
+
+  # ── 写作助手 ──────────────────────────────────────────────
+  - id: notion_ai
+    name: Notion AI
+    category: writing
+    description: 集成在 Notion 中的 AI 写作助手，无缝融入知识库和文档工作流
+    scores:
+      overall: 8.0
+      ease_of_use: 9.5
+      quality: 7.8
+      value: 8.0
+    pricing:
+      free_tier: false
+      free_description: "需要 Notion 订阅"
+      paid_plans:
+        - name: AI 附加（需 Notion Plus）
+          price: 10
+          unit: 月
+    use_cases: [文档写作, 会议纪要, 内容总结, 知识库管理]
+    pros: [与 Notion 无缝集成, 操作简单, 上下文感知]
+    cons: [依赖 Notion 生态, 写作质量一般, 需额外付费]
+    technical_level: beginner
+
+  - id: jasper
+    name: Jasper
+    category: writing
+    description: 专业营销内容 AI 写作平台，内置品牌声音和营销模板
+    scores:
+      overall: 7.8
+      ease_of_use: 8.5
+      quality: 7.5
+      value: 6.5
+    pricing:
+      free_tier: false
+      free_description: "7 天免费试用"
+      paid_plans:
+        - name: Creator
+          price: 49
+          unit: 月
+        - name: Pro
+          price: 69
+          unit: 月
+    use_cases: [营销文案, 博客写作, 社交媒体, 广告文案]
+    pros: [营销模板丰富, 品牌声音一致, SEO 优化]
+    cons: [价格高, 通用写作不如 Claude, 中文支持弱]
+    technical_level: beginner
+
+  - id: chatgpt_writing
+    name: ChatGPT
+    category: writing
+    description: OpenAI 的对话 AI，写作能力全面，支持多种风格和格式
+    scores:
+      overall: 8.8
+      ease_of_use: 9.5
+      quality: 8.8
+      value: 8.5
+    pricing:
+      free_tier: true
+      free_description: "免费版含 GPT-4o mini"
+      paid_plans:
+        - name: Plus
+          price: 20
+          unit: 月
+    use_cases: [通用写作, 内容创作, 翻译, 摘要, 邮件]
+    pros: [使用简单, 风格多样, 生态最大, 免费版可用]
+    cons: [长文一致性差, 事实准确性需验证]
+    technical_level: beginner
+
+  # ── 图像生成 ──────────────────────────────────────────────
+  - id: midjourney
+    name: Midjourney
+    category: image
+    description: 艺术风格最强的图像生成工具，以高质量美学著称，Discord 界面
+    scores:
+      overall: 9.2
+      ease_of_use: 7.0
+      quality: 9.5
+      value: 8.0
+    pricing:
+      free_tier: false
+      free_description: "无免费版"
+      paid_plans:
+        - name: Basic
+          price: 10
+          unit: 月
+        - name: Standard
+          price: 30
+          unit: 月
+        - name: Pro
+          price: 60
+          unit: 月
+    use_cases: [艺术创作, 概念设计, 插画, 品牌视觉]
+    pros: [艺术质量最高, 风格多样, 社区活跃]
+    cons: [无免费版, Discord 界面不直观, 提示词学习曲线]
+    technical_level: intermediate
+
+  - id: dalle3
+    name: DALL-E 3
+    category: image
+    description: OpenAI 的图像生成模型，与 ChatGPT 深度集成，文字理解能力强
+    scores:
+      overall: 8.5
+      ease_of_use: 9.5
+      quality: 8.5
+      value: 8.0
+    pricing:
+      free_tier: true
+      free_description: "ChatGPT Plus 订阅含每日限额"
+      paid_plans:
+        - name: ChatGPT Plus（含 DALL-E）
+          price: 20
+          unit: 月
+        - name: API
+          price: 0.04
+          unit: 张（1024x1024）
+    use_cases: [概念图, 插画, 产品原型, 内容配图]
+    pros: [文字理解准确, ChatGPT 集成, 操作简单]
+    cons: [艺术风格不如 Midjourney, 有内容限制]
+    technical_level: beginner
+
+  - id: flux
+    name: Flux (Black Forest Labs)
+    category: image
+    description: 开源图像生成模型，质量媲美 Midjourney，可本地部署
+    scores:
+      overall: 8.8
+      ease_of_use: 6.0
+      quality: 9.0
+      value: 9.5
+    pricing:
+      free_tier: true
+      free_description: "开源版本免费，可本地运行"
+      paid_plans:
+        - name: Replicate API
+          price: 0.003
+          unit: 张
+    use_cases: [高质量图像生成, 本地部署, 商业用途, 定制微调]
+    pros: [开源免费, 质量高, 可本地部署, 无内容限制]
+    cons: [需要 GPU, 部署复杂, 无官方界面]
+    technical_level: advanced
+
+  - id: ideogram
+    name: Ideogram
+    category: image
+    description: 擅长文字渲染的图像生成工具，海报和排版设计首选
+    scores:
+      overall: 8.3
+      ease_of_use: 8.8
+      quality: 8.5
+      value: 8.5
+    pricing:
+      free_tier: true
+      free_description: "每天 10 次免费生成"
+      paid_plans:
+        - name: Basic
+          price: 7
+          unit: 月
+        - name: Plus
+          price: 16
+          unit: 月
+    use_cases: [海报设计, 文字图像, 品牌设计, 排版]
+    pros: [文字渲染最强, 价格低, 免费版可用]
+    cons: [艺术风格不如 Midjourney, 功能相对单一]
+    technical_level: beginner
+
+  # ── 语音处理 ──────────────────────────────────────────────
+  - id: whisper
+    name: Whisper (OpenAI)
+    category: audio
+    description: OpenAI 开源语音识别模型，多语言支持，可本地部署
+    scores:
+      overall: 9.0
+      ease_of_use: 6.0
+      quality: 9.2
+      value: 9.8
+    pricing:
+      free_tier: true
+      free_description: "开源免费，可本地运行"
+      paid_plans:
+        - name: OpenAI API
+          price: 0.006
+          unit: 分钟
+    use_cases: [语音转文字, 字幕生成, 会议记录, 多语言转录]
+    pros: [开源免费, 多语言支持, 准确率高, 可本地部署]
+    cons: [需要 GPU 加速, 实时性差, 无说话人分离]
+    technical_level: intermediate
+
+  - id: elevenlabs
+    name: ElevenLabs
+    category: audio
+    description: 最逼真的 AI 语音合成平台，支持声音克隆和多语言
+    scores:
+      overall: 9.3
+      ease_of_use: 8.5
+      quality: 9.5
+      value: 7.5
+    pricing:
+      free_tier: true
+      free_description: "每月 10,000 字符免费"
+      paid_plans:
+        - name: Starter
+          price: 5
+          unit: 月
+        - name: Creator
+          price: 22
+          unit: 月
+        - name: Pro
+          price: 99
+          unit: 月
+    use_cases: [语音合成, 有声书, 播客, 声音克隆, 配音]
+    pros: [音质最逼真, 声音克隆, 多语言, API 完善]
+    cons: [高质量需付费, 声音克隆有伦理风险]
+    technical_level: beginner
+
+  - id: suno
+    name: Suno
+    category: audio
+    description: AI 音乐生成平台，输入歌词或描述即可生成完整歌曲
+    scores:
+      overall: 8.8
+      ease_of_use: 9.5
+      quality: 8.8
+      value: 8.5
+    pricing:
+      free_tier: true
+      free_description: "每天 50 积分（约 10 首歌）"
+      paid_plans:
+        - name: Pro
+          price: 8
+          unit: 月
+        - name: Premier
+          price: 24
+          unit: 月
+    use_cases: [音乐创作, 背景音乐, 广告配乐, 娱乐]
+    pros: [操作极简, 质量高, 免费版可用, 风格多样]
+    cons: [商业版权需付费, 创作控制有限]
+    technical_level: beginner
+
+  # ── 搜索与调研 ──────────────────────────────────────────────
+  - id: perplexity
+    name: Perplexity AI
+    category: research
+    description: AI 驱动的搜索引擎，实时联网搜索并给出带引用的答案
+    scores:
+      overall: 9.0
+      ease_of_use: 9.5
+      quality: 8.8
+      value: 9.0
+    pricing:
+      free_tier: true
+      free_description: "免费版含基础搜索，每天有限次数 Pro 搜索"
+      paid_plans:
+        - name: Pro
+          price: 20
+          unit: 月
+    use_cases: [实时信息搜索, 学术调研, 事实核查, 竞品分析]
+    pros: [实时联网, 引用来源, 操作简单, 免费版够用]
+    cons: [深度分析不如 Claude, 中文资源有限]
+    technical_level: beginner
+
+  - id: exa
+    name: Exa
+    category: research
+    description: 专为 AI 应用设计的语义搜索 API，返回结构化内容
+    scores:
+      overall: 8.5
+      ease_of_use: 6.0
+      quality: 9.0
+      value: 7.5
+    pricing:
+      free_tier: true
+      free_description: "每月 1000 次免费搜索"
+      paid_plans:
+        - name: Starter
+          price: 25
+          unit: 月
+        - name: Growth
+          price: 100
+          unit: 月
+    use_cases: [AI 应用集成, 语义搜索, 内容抓取, RAG 系统]
+    pros: [语义搜索准确, API 友好, 返回全文内容]
+    cons: [需要编程, 价格较高, 非技术用户不适合]
+    technical_level: advanced
+
+  - id: tavily
+    name: Tavily
+    category: research
+    description: 专为 AI Agent 优化的搜索 API，返回 AI 友好的结构化结果
+    scores:
+      overall: 8.3
+      ease_of_use: 6.5
+      quality: 8.5
+      value: 8.0
+    pricing:
+      free_tier: true
+      free_description: "每月 1000 次免费 API 调用"
+      paid_plans:
+        - name: Researcher
+          price: 35
+          unit: 月
+    use_cases: [AI Agent 搜索, RAG 系统, 自动化调研]
+    pros: [AI Agent 优化, 结果质量高, 免费额度够用]
+    cons: [仅 API, 无界面, 需要编程]
+    technical_level: advanced
+
+  # ── 数据分析 ──────────────────────────────────────────────
+  - id: julius_ai
+    name: Julius AI
+    category: data
+    description: 专为数据分析设计的 AI，上传数据集即可对话分析并生成图表
+    scores:
+      overall: 8.8
+      ease_of_use: 9.5
+      quality: 8.5
+      value: 8.5
+    pricing:
+      free_tier: true
+      free_description: "每月 15 次免费分析"
+      paid_plans:
+        - name: Essential
+          price: 20
+          unit: 月
+        - name: Pro
+          price: 40
+          unit: 月
+    use_cases: [数据可视化, 统计分析, 数据清洗, 报告生成]
+    pros: [无需编程, 图表美观, 支持多种格式, 操作简单]
+    cons: [免费版限制多, 复杂分析能力有限]
+    technical_level: beginner
+
+  - id: code_interpreter
+    name: Code Interpreter (ChatGPT)
+    category: data
+    description: ChatGPT 内置的 Python 执行环境，可上传文件进行数据分析
+    scores:
+      overall: 8.5
+      ease_of_use: 8.8
+      quality: 8.5
+      value: 8.0
+    pricing:
+      free_tier: false
+      free_description: "需要 ChatGPT Plus"
+      paid_plans:
+        - name: ChatGPT Plus
+          price: 20
+          unit: 月
+    use_cases: [数据分析, 图表生成, 文件处理, Python 执行]
+    pros: [无需本地环境, 与 ChatGPT 集成, 支持多种文件格式]
+    cons: [需要 Plus 订阅, 执行环境有限制, 数据隐私]
+    technical_level: intermediate
+
+  # ── 视频生成 ──────────────────────────────────────────────
+  - id: sora
+    name: Sora (OpenAI)
+    category: video
+    description: OpenAI 的视频生成模型，物理世界理解能力强，画质高
+    scores:
+      overall: 8.8
+      ease_of_use: 8.0
+      quality: 9.0
+      value: 7.0
+    pricing:
+      free_tier: false
+      free_description: "需要 ChatGPT Plus 或 Pro"
+      paid_plans:
+        - name: Plus（含 Sora 基础）
+          price: 20
+          unit: 月
+        - name: Pro（含 Sora 完整）
+          price: 200
+          unit: 月
+    use_cases: [短视频生成, 概念演示, 广告创意, 故事板]
+    pros: [物理理解强, 画质高, OpenAI 生态集成]
+    cons: [Pro 版价格极高, 时长有限, 部分地区受限]
+    technical_level: beginner
+
+  - id: runway
+    name: Runway
+    category: video
+    description: 专业 AI 视频生成和编辑平台，Gen-3 Alpha 质量领先
+    scores:
+      overall: 9.0
+      ease_of_use: 8.5
+      quality: 9.2
+      value: 7.5
+    pricing:
+      free_tier: true
+      free_description: "125 积分免费（约 25 秒视频）"
+      paid_plans:
+        - name: Standard
+          price: 15
+          unit: 月
+        - name: Pro
+          price: 35
+          unit: 月
+        - name: Unlimited
+          price: 95
+          unit: 月
+    use_cases: [视频生成, 视频编辑, 特效制作, 广告视频]
+    pros: [视频质量最高, 编辑功能丰富, 免费版可试用]
+    cons: [积分消耗快, 高质量需付费, 生成时间长]
+    technical_level: intermediate
+
+  - id: kling
+    name: Kling (快手)
+    category: video
+    description: 快手出品的 AI 视频生成工具，中文场景优化，性价比高
+    scores:
+      overall: 8.5
+      ease_of_use: 8.8
+      quality: 8.5
+      value: 9.0
+    pricing:
+      free_tier: true
+      free_description: "每天 66 积分免费"
+      paid_plans:
+        - name: 标准版
+          price: 66
+          unit: 月
+        - name: 专业版
+          price: 198
+          unit: 月
+    use_cases: [中文视频生成, 短视频创作, 电商视频, 娱乐内容]
+    pros: [中文场景优化, 免费额度大, 价格低, 质量高]
+    cons: [国际化支持弱, 部分功能仅限国内]
+    technical_level: beginner
