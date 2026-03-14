@@ -1,0 +1,24 @@
+# app-best-llm 项目配置
+# Single Source of Truth for version management
+
+project_info:
+  name: app-best-llm
+  version: 1.2.0        # 语义化版本：1.2.0（深度工作流升级）
+  description: "基于实时联网搜索的 AI 工具智能推荐应用"
+  default_language: "zh-CN"
+
+# 核心工作流参数
+workflow:
+  min_candidate_tools: 5          # 工具发现阶段最少候选工具数
+  min_verification_sources: 2     # 交叉验证最少独立来源数
+  require_deep_profile: true      # 是否要求收集深度维度（痛点/工具栈/决策优先级）
+  require_benchmark_values: true  # 性能评测是否必须提供具体数值
+
+# 推荐输出规范
+output:
+  max_recommendations: 3          # 最多推荐工具数（1首选+2备选）
+  require_date_annotation: true   # 价格/功能信息是否必须标注查询日期
+  require_comparison_matrix: true # 是否必须输出横向对比矩阵
+  require_why_not_section: true   # 是否必须包含"为什么没选"章节
+  require_tool_combination: true  # 是否必须包含工具组合建议
+  require_pitfall_guide: true     # 是否必须包含避坑指南
